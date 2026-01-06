@@ -14,4 +14,4 @@
   - gradient tells slope (error inc) and it's opposite (-grad) tells how to dec error
 
 3 Back Propogation:
- -Backpropagation identifies how much each intermediate value (neuron, weight, bias) contributed to the final output error.
+ - Backpropagation identifies how much each intermediate value (neuron, weight, bias) contributed to the final output error.
