@@ -1,19 +1,11 @@
-from processing import gen_vocab , SimpleTokenizerV1
+from embeddings import get_embeddings
 
 with open('the-verdict.txt','r',encoding='utf-8') as f:
   raw_text = f.read()
 
-vocab = gen_vocab(raw_text)
+VOCAB_SIZE = 50257
+embeddings = get_embeddings(
+    raw_text, VOCAB_SIZE, embedding_dim=64, batch_size=2, max_length=16, stride=8, shuffle=True, num_worker=0
+)
 
-text1 = "Hello, do you like tea?"
-text2 = "In the sunlit terraces of the palace."
-text = " <|endoftext|> ".join((text1 , text2))
-
-print(text)
-tokenizer = SimpleTokenizerV1(vocab)
-encoded = tokenizer.encode(text)
-decoded = tokenizer.decode(encoded)
-
-print("(encoded):", encoded)
-print("Decoded text :", decoded)
-
+print(embeddings.shape)  # Should print torch.Size([2, 16, 64])
