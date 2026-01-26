@@ -1,0 +1,3 @@
+pip install fastapi , uvicorn -> to run server , pydantic
+uvicorn fastapi-e/main.py:app --reload
+url/docs -> opens UI

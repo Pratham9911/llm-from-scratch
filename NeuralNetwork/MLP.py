@@ -57,7 +57,7 @@ def minibatch_generator(X, y, batch_size):
         yield X[batch_idx], y[batch_idx]
 
 def train(model, X, y, epochs=10, lr=0.1, batch_size=100):
-
+    losses = []
     for epoch in range(epochs):
 
         minibatches = minibatch_generator(X, y, batch_size)
@@ -84,9 +84,9 @@ def train(model, X, y, epochs=10, lr=0.1, batch_size=100):
 
         loss = mse_loss(y, probas, model.num_classes)
         acc = accuracy(y, preds)
-
+        losses.append(loss)
         print(f"Epoch {epoch+1}/{epochs} | Loss: {loss:.4f} | Acc: {acc*100:.2f}%")
-
+    return losses
 def mse_loss(y, probas, num_classes):
     y_onehot = int_to_one_hot(y, num_classes)
     return np.mean((y_onehot - probas) ** 2)
@@ -103,7 +103,7 @@ y = y.astype(int).values
 def getXy():
     return X, y
 model = NeuralNetMLP(num_features=784,num_hidden=50,num_classes=10)
-train(model, X, y, epochs=10, lr=0.1, batch_size=100)
+losses = train(model, X, y, epochs=10, lr=0.1, batch_size=100)
 np.savez(
 "mlp_mnist_model.npz",
 weight_h=model.weight_h,
@@ -112,4 +112,6 @@ weight_out=model.weight_out,
 bias_out=model.bias_out
 )
 
-   
+import matplotlib.pyplot as plt
+plt.plot(losses)
+plt.show()
