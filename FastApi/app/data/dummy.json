@@ -1,0 +1,14 @@
+[
+    {
+        "id": 0,
+        "name": "Phone_Pratham",
+        "price": 1.0,
+        "stock": 0,
+        "category": "string",
+        "description": "string",
+        "tags": [
+            "string"
+        ],
+        "created_at": "2026-01-28T16:58:33.916226"
+    }
+]
