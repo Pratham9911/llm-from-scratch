@@ -1,15 +1,4 @@
-import random
-import time
-import os
+# simple code to ask name and print iy
+name = input("What is your name? ")
+print(f"Hello, {name}!")
 
-a = random.randint(1, 10)
-b = int(input("Enter a number between 1 and 10: "))
-
-if a == b:
-    print("You guessed it!")
-else:
-    print("Wrong! Terminal locked 😈")
-
-    while True:
-        print("ACCESS DENIED")
-        time.sleep(2)
